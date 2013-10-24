@@ -71,40 +71,6 @@ namespace DanceDance
         {
             for (int i = 0; i < filePlayers.Count; ++i)
                 filePlayers[i].precount();
-            for (int i = 0; i < filePlayers.Count; ++i)
-                Trace.WriteLine(filePlayers[i].fileName);
-            int i1 = filePlayers[0].DP.frames.Count - 1;
-            int i2 = filePlayers[1].DP.frames.Count - 1;
-            int i3 = filePlayers[2].DP.frames.Count - 1;
-            bool ok = true;
-            while (ok)
-            {
-                ok = (i1 >= 0) || (i2 >= 0) || (i3 >= 0);
-                if (i1 >= 0)
-                {
-                    Trace.Write(filePlayers[0].DP.frames[i1].time.ToString() + " 0 ");
-                }
-                if (i2 >= 0)
-                {
-                    Trace.Write(filePlayers[1].DP.frames[i2].time.ToString() + " ");
-                    if (i1 >= 0)
-                    {
-                        int d = filePlayers[0].DP.frames[i1].time - filePlayers[1].DP.frames[i2].time;
-                        Trace.Write(d.ToString() + " ");
-                    }
-                }
-                if (i3 >= 0)
-                {
-                    Trace.Write(filePlayers[2].DP.frames[i3].time.ToString() + " ");
-                    if (i1 >= 0)
-                    {
-                        int d = filePlayers[0].DP.frames[i1].time - filePlayers[2].DP.frames[i3].time;
-                        Trace.Write(d.ToString() + " ");
-                    }
-                }
-                --i1; --i2; --i3;
-                Trace.WriteLine("");
-            }
         }
 
         public void LetsDance()
