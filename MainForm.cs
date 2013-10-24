@@ -577,7 +577,7 @@ namespace DanceDance
 
         private void startDance_b_Click(object sender, EventArgs e)
         {
-            //if (!DanceIsReady()) return;
+            if (!DanceIsReady()) return;
 
             List<DanceRB.ControlFile> controlFiles = new List<DanceRB.ControlFile>();
             for (int i = 0; i < FileControlLinesCount; ++i)
@@ -607,7 +607,7 @@ namespace DanceDance
             dance = new DanceRB(controlFiles, ports);
             dance.PrepareDance();
             Thread danceThread = new Thread(startDance);
-            //danceThread.Start();
+            danceThread.Start();
 
             danceState = DanceState.Running;
             DanceTimer.Enabled = true;
