@@ -53,12 +53,17 @@
             this.isUsingMusic_chb = new System.Windows.Forms.CheckBox();
             this.music_tb = new System.Windows.Forms.TextBox();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.frames_trackBar = new System.Windows.Forms.TrackBar();
+            this.frames_panel = new System.Windows.Forms.Panel();
+            this.frames_label = new System.Windows.Forms.Label();
             this.robots_gb.SuspendLayout();
             this.RobotControlAllTogether_panel.SuspendLayout();
             this.files_gb.SuspendLayout();
             this.DanceControls_panel.SuspendLayout();
             this.music_gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frames_trackBar)).BeginInit();
+            this.frames_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // connect_rAll_b
@@ -288,11 +293,41 @@
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(10, 10);
             this.axWindowsMediaPlayer1.TabIndex = 73;
             // 
+            // frames_trackBar
+            // 
+            this.frames_trackBar.AutoSize = false;
+            this.frames_trackBar.Location = new System.Drawing.Point(4, 3);
+            this.frames_trackBar.Name = "frames_trackBar";
+            this.frames_trackBar.Size = new System.Drawing.Size(532, 29);
+            this.frames_trackBar.TabIndex = 74;
+            this.frames_trackBar.ValueChanged += new System.EventHandler(this.frames_trackBar_ValueChanged);
+            this.frames_trackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frames_trackBar_MouseUp);
+            // 
+            // frames_panel
+            // 
+            this.frames_panel.Controls.Add(this.frames_label);
+            this.frames_panel.Controls.Add(this.frames_trackBar);
+            this.frames_panel.Enabled = false;
+            this.frames_panel.Location = new System.Drawing.Point(20, 253);
+            this.frames_panel.Name = "frames_panel";
+            this.frames_panel.Size = new System.Drawing.Size(664, 35);
+            this.frames_panel.TabIndex = 74;
+            // 
+            // frames_label
+            // 
+            this.frames_label.AutoSize = true;
+            this.frames_label.Location = new System.Drawing.Point(542, 13);
+            this.frames_label.Name = "frames_label";
+            this.frames_label.Size = new System.Drawing.Size(24, 13);
+            this.frames_label.TabIndex = 75;
+            this.frames_label.Text = "0/0";
+            // 
             // main_f
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 250);
+            this.ClientSize = new System.Drawing.Size(696, 290);
+            this.Controls.Add(this.frames_panel);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.music_gb);
             this.Controls.Add(this.DanceControls_panel);
@@ -314,6 +349,9 @@
             this.music_gb.ResumeLayout(false);
             this.music_gb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frames_trackBar)).EndInit();
+            this.frames_panel.ResumeLayout(false);
+            this.frames_panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -343,6 +381,9 @@
         private System.Windows.Forms.Button openMusic_b;
         private System.Windows.Forms.CheckBox isUsingMusic_chb;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.TrackBar frames_trackBar;
+        private System.Windows.Forms.Panel frames_panel;
+        private System.Windows.Forms.Label frames_label;
     }
 }
 

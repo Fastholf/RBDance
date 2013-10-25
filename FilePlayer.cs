@@ -50,9 +50,20 @@ namespace DanceDance
             ++currentFrameIndex;
         }
 
+        public void setFrame(int frame)
+        {
+            for (int i = 0; i < roboCount; ++i)
+                ServoPosesSend(i, DancePrecounter.HUNO_SERVO_COUNT, 4, DP.frames[frame].servo);
+        }
+
         public int getNextFrameTime()
         {
             return DP.frames[currentFrameIndex].time;
+        }
+
+        public int getCurrentFrame()
+        {
+            return currentFrameIndex;
         }
 
         public int getFrameCount()
@@ -136,6 +147,11 @@ namespace DanceDance
                 Trace.WriteLine("SyncPosSend: " + e1.Message + " " + serialPorts[portNum].PortName.ToString());
                 return;
             }
+        }
+
+        public int getTimeLength()
+        {
+            return DP.getFullTime();
         }
 
     }// class ServoControl

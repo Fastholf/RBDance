@@ -58,6 +58,7 @@ namespace DanceDance
             fileControlLineHeight = 30,
             spaceBetweenFileControlLines = 4;
         private int RobotToFileStartXPos = 0, RobotToFileStartYPos = 0;
+        private int DanceLength = 0;
 
         #endregion
 
@@ -231,6 +232,7 @@ namespace DanceDance
             files_gb.Location = new Point(files_gb.Location.X, files_gb.Location.Y + dy);
 
             DanceControls_panel.Location = new Point(DanceControls_panel.Location.X, DanceControls_panel.Location.Y + dy);
+            frames_panel.Location = new Point(frames_panel.Location.X, frames_panel.Location.Y + dy);
 
             funny_p.Location = new Point(funny_p.Location.X, funny_p.Location.Y + dy);
 
@@ -606,6 +608,11 @@ namespace DanceDance
 
             dance = new DanceRB(controlFiles, ports);
             dance.PrepareDance();
+            DanceLength = dance.GetDanceLength();
+            frames_trackBar.Maximum = DanceLength;
+            frames_label.Text = "0/" + DanceLength.ToString();
+            dance.setFramesLabel(frames_label);
+            dance.setFramesTrackBar(frames_trackBar);
             Thread danceThread = new Thread(startDance);
             danceThread.Start();
 
@@ -618,6 +625,7 @@ namespace DanceDance
             startDance_b.Enabled = false;
             pauseResumeDance_b.Enabled = true;
             stopDance_b.Enabled = true;
+            frames_panel.Enabled = false;
             funny_p_start();
         }
 
@@ -695,6 +703,7 @@ namespace DanceDance
                 if (isUsingMusic_chb.Checked)
                     axWindowsMediaPlayer1.Ctlcontrols.stop();
 //                Trace.Write("DanceTimer: Dance");
+                frames_panel.Enabled = true;
             }
             funny_p.Invalidate();
         }
@@ -704,6 +713,7 @@ namespace DanceDance
             dance.Abort();
             danceState = DanceState.Stopped;
             stopDance_b.Enabled = false;
+
             funny_p_stop();
         }
 
@@ -1026,6 +1036,7 @@ namespace DanceDance
             this.MaximumSize = tempSize;
 
             DanceControls_panel.Location = new Point(DanceControls_panel.Location.X, DanceControls_panel.Location.Y + dy);
+            frames_panel.Location = new Point(frames_panel.Location.X, frames_panel.Location.Y + dy);
 
             int cy = files_gb.Height / 2 + files_gb.Location.Y - funny_p.Height / 2;
             funny_p.Location = new Point(funny_p.Location.X, cy);
@@ -1115,6 +1126,16 @@ namespace DanceDance
             openFileDialog.InitialDirectory = "C:\\";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 music_tb.Text = openFileDialog.FileName;
+        }
+
+        private void frames_trackBar_ValueChanged(object sender, EventArgs e)
+        {
+            frames_label.Text = frames_trackBar.Value.ToString() + "/" + DanceLength.ToString();
+        }
+
+        private void frames_trackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            dance.SetToFrame(frames_trackBar.Value);
         }
     }
 }
