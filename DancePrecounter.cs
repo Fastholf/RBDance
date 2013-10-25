@@ -97,5 +97,10 @@ namespace DanceDance
             double step = (double)distance / (double)count;
             return startPos + step * num;
         }
+
+        public int getFullTime()
+        {
+            return frames.Last().time;
+        }
     }
 }
